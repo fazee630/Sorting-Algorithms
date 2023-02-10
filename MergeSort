@@ -1,0 +1,46 @@
+def Merge(A, B):
+	m = len(A)
+	n = len(B)
+	i, j, k = 0, 0, 0
+	C = []
+	while (i<m and j<n):
+		if (A[i] < B[j]):
+			C.append(A[i])
+			k += 1
+			i += 1
+		else:
+			C.append(B[j])
+			k += 1
+			j += 1
+
+	for p in range(i, m):
+		C.append(A[p])
+		#C[k] = A[p]
+		k += 1
+		p += 1
+
+	for p in range(j, n):
+		C.append(B[p])
+		#C[k] = B[p]
+		k += 1
+		p += 1
+	return(C)
+
+def MergeSort(List):
+	l=0
+	h=len(List)-1
+	
+	if (h>l):
+		mid = h//2
+		A1 = List[l:mid+1]		#including l, excluding mid+1
+		A2 = List[mid+1:h+1]
+		A1 = MergeSort(A1)
+		A2 = MergeSort(A2)
+		List = Merge(A1, A2)
+	return(List)
+		
+
+print(MergeSort([2, 4, 6, 8, 10, 11, 12, 13, 90, 14, 15, 1, 3, -3, 5, 7, 9, 16, 17, 18]))
+
+
+
